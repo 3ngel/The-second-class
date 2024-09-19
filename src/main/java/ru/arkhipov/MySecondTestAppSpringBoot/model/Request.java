@@ -1,5 +1,6 @@
 package ru.arkhipov.MySecondTestAppSpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -13,6 +14,8 @@ import lombok.*;
 @AllArgsConstructor
 public class Request {
 
+    public String[] Systems = new String[]{"ERP", "CRM", "WMS"};
+
     @NotBlank
     @Size(min = 1,max = 32)
     private String uid;
@@ -20,7 +23,7 @@ public class Request {
     @NotBlank
     @Size(min = 1,max = 32)
     private String operationUid;
-    private String systemName;
+    private Systems systemName;
     @NotBlank
     private String systemTime;
     private String source;
@@ -30,4 +33,18 @@ public class Request {
     private int templateId;
     private int productCode;
     private int smsCode;
+    @Override
+    public String toString(){
+        return "{"+
+                "uid='"+uid+"\'"+
+                "operationUid='"+operationUid+"\'"+
+                "systemName='"+systemName+"\'"+
+                "systemTime='"+systemTime+"\'"+
+                "source='"+source+"\'"+
+                "communicationId='"+communicationId+"\'"+
+                "templateId='"+templateId+"\'"+
+                "productCode='"+productCode+"\'"+
+                "smsCode='"+smsCode+"\'"+
+                "}";
+    }
 }
