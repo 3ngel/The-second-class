@@ -3,6 +3,7 @@ package ru.arkhipov.MySecondTestAppSpringBoot.controller;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,8 @@ import ru.arkhipov.MySecondTestAppSpringBoot.exception.ValidationFailedException
 import ru.arkhipov.MySecondTestAppSpringBoot.model.*;
 import org.springframework.http.HttpStatus;
 import ru.arkhipov.MySecondTestAppSpringBoot.service.CodeExceptionService;
+import ru.arkhipov.MySecondTestAppSpringBoot.service.ModifyRequestService;
+import ru.arkhipov.MySecondTestAppSpringBoot.service.ModifyResponseService;
 import ru.arkhipov.MySecondTestAppSpringBoot.service.ValidationService;
 import ru.arkhipov.MySecondTestAppSpringBoot.util.DateTimeUtil;
 
@@ -22,11 +25,14 @@ import java.util.Date;
 @RestController
 public class MyController {
     private final ValidationService validationService;
-    private final CodeExceptionService codeExceptionService;
+    private final ModifyResponseService modifyResponseService;
+    private final ModifyRequestService modifyRequestService;
     @Autowired
-    public MyController(ValidationService validationService,CodeExceptionService codeExceptionService){
+    public MyController(ValidationService validationService, @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService,
+                        ModifyRequestService modifyRequestService){
         this.validationService = validationService;
-        this.codeExceptionService = codeExceptionService;
+        this.modifyResponseService = modifyResponseService;
+        this.modifyRequestService = modifyRequestService;
     }
 
     @PostMapping(value = "/feedback")
@@ -41,7 +47,7 @@ public class MyController {
         log.info("response: {}", response);
         try{
             validationService.isValid(bindingResult);
-            codeExceptionService.isSupported(request);
+//            codeExceptionService.isSupported(request);
         }
         catch (ValidationFailedException e) {
             log.error("response: {}", response);
@@ -50,13 +56,13 @@ public class MyController {
             response.setErrorMessage(ErrorMessages.VALIDATION);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        catch(UnsupportedCodeException e){
-            log.error("response: {}", response);
-            response.setErrorCode(ErrorCodes.VALID_UID);
-            response.setCode(Codes.FAILED);
-            response.setErrorMessage(ErrorMessages.VALIDATIONUID);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        }
+//        catch(UnsupportedCodeException e){
+//            log.error("response: {}", response);
+//            response.setErrorCode(ErrorCodes.VALID_UID);
+//            response.setCode(Codes.FAILED);
+//            response.setErrorMessage(ErrorMessages.VALIDATIONUID);
+//            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+//        }
         catch (Exception e){
             log.error("response: {}", response);
             response.setCode(Codes.FAILED);

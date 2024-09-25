@@ -23,7 +23,7 @@ public class Request {
     @NotBlank
     @Size(min = 1,max = 32)
     private String operationUid;
-    private Systems systemName;
+    private String systemName;
     @NotBlank
     private String systemTime;
     private String source;
