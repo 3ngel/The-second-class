@@ -1,7 +1,5 @@
-package ru.arkhipov.MySecondTestAppSpringBoot.model;
+package ru.arkhipov.MyThirdTestAppSpringBoot.model;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -23,7 +21,7 @@ public class Request {
     @NotBlank
     @Size(min = 1,max = 32)
     private String operationUid;
-    private Systems systemName;
+    private String systemName;
     @NotBlank
     private String systemTime;
     private String source;

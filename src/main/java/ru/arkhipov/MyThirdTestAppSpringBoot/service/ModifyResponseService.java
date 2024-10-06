@@ -1,7 +1,7 @@
-package ru.arkhipov.MySecondTestAppSpringBoot.service;
+package ru.arkhipov.MyThirdTestAppSpringBoot.service;
 
 import org.springframework.stereotype.Service;
-import ru.arkhipov.MySecondTestAppSpringBoot.model.Response;
+import ru.arkhipov.MyThirdTestAppSpringBoot.model.Response;
 
 @Service
 public interface ModifyResponseService {

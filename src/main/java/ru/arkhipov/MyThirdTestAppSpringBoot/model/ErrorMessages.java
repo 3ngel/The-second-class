@@ -1,4 +1,4 @@
-package ru.arkhipov.MySecondTestAppSpringBoot.model;
+package ru.arkhipov.MyThirdTestAppSpringBoot.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

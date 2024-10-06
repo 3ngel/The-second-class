@@ -1,4 +1,4 @@
-package ru.arkhipov.MySecondTestAppSpringBoot.exception;
+package ru.arkhipov.MyThirdTestAppSpringBoot.exception;
 
 public class ValidationFailedException extends Exception {
     public ValidationFailedException (String message){
