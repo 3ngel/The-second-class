@@ -20,13 +20,22 @@ public class Request {
     @Size(min = 1,max = 32)
     private String uid;
 
+//    Идентификатор операции
     @NotBlank
     @Size(min = 1,max = 32)
     private String operationUid;
+
+    //Имя системы обработки
     private String systemName;
+    //Системное время
     @NotBlank
     private String systemTime;
     private String source;
+    private Positions position;
+    private Double salary;
+    private Double bonus;
+    private Integer workDays;
+    private Boolean isManager;
     @Min(1)
     @Max(100000)
     private int communicationId;

@@ -11,6 +11,7 @@ public class Response {
     private String operationUid;
     private String systemTime;
     private Codes code;
+    private Double anualBonus;
     private ErrorCodes errorCode;
     private ErrorMessages errorMessage;
 
